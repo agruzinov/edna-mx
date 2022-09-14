@@ -109,7 +109,7 @@
             <XSParamList>
                 <XSParamItem>
                     <name>EDNA2html</name>
-                    <value>/asap3/petra3/gpfs/common/p11/processing/edna/edna-mx/libraries/EDNA2html-0.0.10a/EDNA2html</value>
+                    <value>/gpfs/local/shared/edna_install/edna/libraries/EDNA2html-0.0.10a/EDNA2html</value>
                 </XSParamItem>
             </XSParamList>
         </XSPluginItem>
