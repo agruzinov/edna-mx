@@ -6,13 +6,41 @@
   	<XSImportConfiguration>
   		<name>XSConfiguration_DESY_P11_ISPyB</name>
 	</XSImportConfiguration>
+        <XSImportConfiguration>
+                <name>XSConfiguration_DESY_P11_Common</name>
+        </XSImportConfiguration>
   	<XSPluginList>
+                <XSPluginItem>
+                        <name>EDPluginExecMinimalXdsv1_0</name>
+                        <XSParamList>
+                                <XSParamItem>
+                                        <name>execProcessScriptShell</name>
+                                        <value>/bin/bash</value>
+                                </XSParamItem>
+                                <XSParamItem>
+                                        <name>execProcessScriptExecutable</name>
+                                        <value>/opt/xray/xds/xds_par</value>
+                                </XSParamItem>
+                                <XSParamItem>
+                                        <name>pathToNeggiaPlugin</name>
+                                        <value>/opt/xray/XDSAPP/plugins/dectris-neggia.so</value>
+                                </XSParamItem>
+                                <XSParamItem>
+                                        <name>timeOut</name>
+                                        <value>3600</value>
+                                </XSParamItem>
+                                <XSParamItem>
+                                        <name>maxNoProcessors</name>
+                                        <value>20</value>
+                                </XSParamItem>
+                        </XSParamList>
+                </XSPluginItem>
 		<XSPluginItem>
 			<name>EDPluginControlInterfaceToMXCuBEv1_4</name>  
 			<XSParamList>
 				<XSParamItem>
 					<name>mxCuBE_URI</name>
-					<value>http://id231control.esrf.fr:7171</value>
+**					<value>http://id231control.esrf.fr:7171</value>
 				</XSParamItem>
 			</XSParamList>
 		</XSPluginItem>
@@ -21,7 +49,7 @@
 			<XSParamList>
 				<XSParamItem>
 					<name>mxCuBE_URI</name>
-					<value>http://id231control.esrf.fr:7171</value>
+**					<value>http://id231control.esrf.fr:7171</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>runKappa</name>
@@ -99,4 +127,4 @@
 			</XSParamList>
 		</XSPluginItem>
 	</XSPluginList> 
-</XSConfiguration> 
+</ XSConfiguration> 
