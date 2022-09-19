@@ -1,0 +1,40 @@
+Name       | CLASS | D-r  |Pix Size |N.of P-ls|Read-|Sw.|Gain|D. |D. |Prof |head|f  s |sw|dose
+           |       | mm   |  mm     | x |   y |out  | T |    |b. |C. |err. |size|a  l |ap|key 
+           |       |      |         |   |     | s   | s |    |   |   |     |    |st ow|  |
+----------------------------------------------------------------------------------------------
+pilatus6m    6m      440.64 0.172000  2463 2527 0.001 0 0.50 0.0  0.0 0.030  pck DC DA 0  0
+pilatus6mC2  6m       70.00 0.172000   487  407 0.001 0 0.50 0.0  0.0 0.030  pck DC DA 0  0
+pilatus6mC18 6m      215.86 0.172000  1475 1255 0.001 0 0.50 0.0  0.0 0.030  pck DC DA 0  0 
+pilatus2m    2m      254.00 0.172000  1475 1679 0.001  0 0.50 0.0  0.0 0.020  pck DC DA 0  0      
+pilatus3k    3k       83.7  0.172000   487  619 0.001  0 0.50 0.0  0.0 0.030  pck DC DA 0  0
+eiger1-16m  16m      311.25 0.075000  4150 4371 0.001  0 0.50 0.0  0.0 0.030  pck DC DA 0  0
+eiger16m    16m      311.25 0.075000  4148 4362 0.001  0 0.50 0.0  0.0 0.030  pck DC DA 0  0
+eiger4m      4m      155.25 0.075000  2070 2167 0.001  0 0.50 0.0  0.0 0.030  pck DC DA 0  0
+imger1m      1m      155.25 0.150000  1035 1083 0.001  0 0.50 0.0  0.0 0.030  512 DC DA 0  0
+imger4m      4m      155.25 0.075000  2070 2167 0.001  0 0.50 0.0  0.0 0.030  512 DC DA 0  0
+img1m        1m      300    0.172      981 1043 0.001  0 0.50 0.0  0.0 0.030  512 DC DA 0  0 
+end
+
+Name - unique name of the detector with given parameters. It is used in the command line. 
+CLASS - any combination of signs. It is used to identification equal type of a detector.
+
+D-r - detector diameter
+Read-out - detector readout time
+Sw T -  switching plate time (for RAXIS)
+D.b. - detector background
+D.c. - detector dark current
+  
+ _____________
+|B           C|
+|             |
+|    IMAGE    |
+|             |
+|             |
+|A___________D|  DENZO Coordinate sistem X -> DA, Y -> DC 
+
+
+dose key - how to calculate dose
+     0    dose = dose_initial*T_cal/T_initial  
+     1    dose = (dose_initial*d_Phi_initial/T_initial)*T_cal/d_Phi_cal
+
+
