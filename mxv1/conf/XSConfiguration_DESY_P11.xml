@@ -40,7 +40,11 @@
 			<XSParamList>
 				<XSParamItem>
 					<name>mxCuBE_URI</name>
+<<<<<<< master
 					<value>http://haspp11user03.desy.de:7171</value>
+=======
+**					<value>http://id231control.esrf.fr:7171</value>
+>>>>>>> Update from Gleb
 				</XSParamItem>
 			</XSParamList>
 		</XSPluginItem>
@@ -49,7 +53,11 @@
 			<XSParamList>
 				<XSParamItem>
 					<name>mxCuBE_URI</name>
+<<<<<<< master
 					<value>http://haspp11user03.desy.de:7171</value>
+=======
+**					<value>http://id231control.esrf.fr:7171</value>
+>>>>>>> Update from Gleb
 				</XSParamItem>
 				<XSParamItem>
 					<name>runKappa</name>
@@ -127,4 +135,4 @@
 			</XSParamList>
 		</XSPluginItem>
 	</XSPluginList> 
-</XSConfiguration> 
+</ XSConfiguration> 

@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
-<XSConfiguration> 
+<XSConfiguration>
 	<XSPluginList>
-		<XSPluginItem> 
+		<XSPluginItem>
 			<name>EDPluginLabelitv10</name>  
 			<XSParamList>
 				<XSParamItem>
@@ -35,7 +35,7 @@
 			<XSParamList>
 				<XSParamItem>
 					<name>pathToLabelitSetpathScript</name>
-					<value>/opt/xray/phenix/phenix_env.sh<</value>
+					<value>/opt/xray/phenix/phenix_env.sh</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptShell</name>
@@ -47,7 +47,7 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptSetupCCP4</name>
-					<value>/opt/xray/ccp4-7.0/bin/ccp4.setup-sh<</value>
+					<value>/opt/xray/ccp4-7.0/bin/ccp4.setup-sh</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptVersionString</name>
@@ -135,7 +135,7 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/mosflm__v730_20190821</value>
+					<value>/opt/xray/imosflm/bin/mosflm</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptSetupCCP4</name>
@@ -143,7 +143,7 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptVersionString</name>
-					<value>Mosflm version 7.3.0  for IP, CCD and PAD data</value>
+					<value>Mosflm version 7.4.0  for IP, CCD and PAD data</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>timeOut</name>
@@ -160,15 +160,15 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/mosflm__v730_20190821</value>
+					<value>/opt/xray/imosflm/bin/mosflm</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptSetupCCP4</name>
-					<value>/opt/pxsoft/ccp4/v7.0/linux-x86_64/ccp4-7.0/bin/ccp4.setup-sh</value>
+					<value>/opt/xray/ccp4-7.0/bin/ccp4.setup-sh</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptVersionString</name>
-					<value>Mosflm version 7.3.0  for IP, CCD and PAD data</value>
+					<value>Mosflm version 7.4.0  for IP, CCD and PAD data</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>timeOut</name>
@@ -185,15 +185,15 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/mosflm__v730_20190821</value>
+					<value>/opt/xray/imosflm/bin/mosflm</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptSetupCCP4</name>
-					<value>/opt/pxsoft/ccp4/v7.0/linux-x86_64/ccp4-7.0/bin/ccp4.setup-sh</value>
+					<value>/opt/xray/ccp4-7.0/bin/ccp4.setup-sh</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptVersionString</name>
-					<value>Mosflm version 7.3.0  for IP, CCD and PAD data</value>
+					<value>Mosflm version 7.4.0  for IP, CCD and PAD data</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>timeOut</name>
@@ -210,11 +210,7 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/raddose__v20090103</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>execProcessScriptSetupCCP4</name>
-					<value>/opt/pxsoft/ccp4/v6.5/linux-x86_64/ccp4-6.5/bin/ccp4.setup-sh</value>
+					<value>/asap3/petra3/gpfs/common/p11/processing/edna-mx/bin/raddose</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptVersionString</name>
@@ -239,11 +235,11 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/BEST/v4.1.0_20121002/linux/best</value>
+					<value>/asap3/petra3/gpfs/common/p11/processing/edna-mx/best</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptSetupCCP4</name>
-					<value>/opt/pxsoft/ccp4/v6.5/linux-x86_64/ccp4-6.5/bin/ccp4.setup-sh</value>
+					<value>/opt/xray/ccp4-7.0/bin/ccp4.setup-sh</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptVersionString</name>
@@ -252,65 +248,6 @@
 				<XSParamItem>
 					<name>timeOut</name>
 					<value>30</value>
-				</XSParamItem>
-			</XSParamList>
-		</XSPluginItem>
-		<XSPluginItem>
-			<name>EDPluginBestv1_3</name>  
-			<XSParamList>
-				<XSParamItem>
-					<name>execProcessScriptShell</name>
-					<value>/bin/bash</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/BEST/v5.1.1_20151118/linux/best</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>execProcessScriptSetupCCP4</name>
-					<value>/opt/pxsoft/ccp4/v6.5/linux-x86_64/ccp4-6.5/bin/ccp4.setup-sh</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>execProcessScriptVersionString</name>
-					<value>Version 5.1.0 //  28.05.2015</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>timeOut</name>
-					<value>30</value>
-				</XSParamItem>
-			</XSParamList>
-		</XSPluginItem>
-		<XSPluginItem>
-			<name>EDPluginRdfitv1_0</name>  
-			<XSParamList>
-				<XSParamItem>
-					<name>execProcessScriptShell</name>
-					<value>/bin/bash</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/rdfit</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>timeOut</name>
-					<value>120</value>
-				</XSParamItem>
-			</XSParamList>
-		</XSPluginItem>
-		<XSPluginItem>
-			<name>EDPluginFbestv1_0</name>  
-			<XSParamList>
-				<XSParamItem>
-					<name>execProcessScriptShell</name>
-					<value>/bin/bash</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/fbest</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>timeOut</name>
-					<value>120</value>
 				</XSParamItem>
 			</XSParamList>
 		</XSPluginItem>
@@ -340,7 +277,7 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/eiger2cbf</value>
+					<value>/asap3/petra3/gpfs/common/p11/processing/edna-mx/bin/eiger2cbf_160415</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>timeOut</name>
@@ -357,7 +294,7 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/xds_par</value>
+					<value>/opt/xray/xds/xds_par</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessWorkingDirectory</name>
@@ -366,14 +303,6 @@
 				<XSParamItem>
 					<name>timeOut</name>
 					<value>600</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>x-geo_corr</name>
-					<value>/data/id29/inhouse/opid291/x_geo_corr.cbf</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>y-geo_corr</name>
-					<value>/data/id29/inhouse/opid291/y_geo_corr.cbf</value>
 				</XSParamItem>
 			</XSParamList>
 		</XSPluginItem> 
@@ -386,19 +315,11 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/xds_par</value>
+					<value>/opt/xray/xds/xds_par</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>timeOut</name>
 					<value>600</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>x-geo_corr</name>
-					<value>/data/id29/inhouse/opid291/x_geo_corr.cbf</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>y-geo_corr</name>
-					<value>/data/id29/inhouse/opid291/y_geo_corr.cbf</value>
 				</XSParamItem>
 			</XSParamList>
 		</XSPluginItem> 
@@ -411,109 +332,14 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/xds_par</value>
+					<value>/opt/xray/bin/xds_par</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>timeOut</name>
 					<value>600</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>x-geo_corr</name>
-					<value>/data/id29/inhouse/opid291/x_geo_corr.cbf</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>y-geo_corr</name>
-					<value>/data/id29/inhouse/opid291/y_geo_corr.cbf</value>
 				</XSParamItem>
 			</XSParamList>
 		</XSPluginItem> 
-		<XSPluginItem>
-			<name>EDPluginSTACOrientationv2_0</name>
-			<XSParamList>
-				<XSParamItem>
-					<name>execProcessScriptShell</name>
-					<value>/bin/bash</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/runstac.sh</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>execProcessScriptVersionString</name>
-					<value>Version 2</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>timeOut</name>
-					<value>600</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>STACDIR</name>
-					<value>/opt/pxsoft/stac2/vedna/STAC/</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>BCMDEF</name>
-					<value>$EDNA_HOME/mxPluginExec/plugins/EDPluginGroupSTAC-v2.0/config/BCM_$EDNA_SITE.dat</value>
-				</XSParamItem>
-			</XSParamList>
-		</XSPluginItem>
-		<XSPluginItem> 
-			<name>EDPluginSTACAlignmentv2_0</name>  
-			<XSParamList>
-				<XSParamItem>
-					<name>execProcessScriptShell</name>
-					<value>/bin/bash</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/runstac.sh</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>execProcessScriptVersionString</name>
-					<value>Version 2</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>timeOut</name>
-					<value>600</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>STACDIR</name>
-					<value>/opt/pxsoft/stac2/vedna/STAC/</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>BCMDEF</name>
-					<value>$EDNA_HOME/mxPluginExec/plugins/EDPluginGroupSTAC-v2.0/config/BCM_$EDNA_SITE.dat</value>
-				</XSParamItem>
-			</XSParamList>
-		</XSPluginItem>
-		<XSPluginItem> 
-			<name>EDPluginSTACStrategyv2_0</name>  
-			<XSParamList>
-				<XSParamItem>
-					<name>execProcessScriptShell</name>
-					<value>/bin/bash</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/runstac.sh</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>execProcessScriptVersionString</name>
-					<value>Version 2</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>timeOut</name>
-					<value>600</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>STACDIR</name>
-					<value>/opt/pxsoft/stac2/vedna/STAC/</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>BCMDEF</name>
-					<value>$EDNA_HOME/mxPluginExec/plugins/EDPluginGroupSTAC-v2.0/config/BCM_$EDNA_SITE.dat</value>
-				</XSParamItem>
-			</XSParamList>
-		</XSPluginItem>
 		<XSPluginItem> 
 			<name>EDPluginExecMtz2Variousv1_0</name>  
 			<XSParamList>
@@ -523,7 +349,7 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/mtz2various</value>
+					<value>/opt/xray/ccp4-7.0/bin/mtz2various</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>timeOut</name>
@@ -531,7 +357,7 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptSetupCCP4</name>
-					<value>/opt/pxsoft/ccp4/v6.5/linux-x86_64/ccp4-6.5/bin/ccp4.setup-sh</value>
+					<value>/opt/xray/ccp4-7.0/bin/ccp4.setup-sh</value>
 				</XSParamItem>
 			</XSParamList>
 		</XSPluginItem>
@@ -544,8 +370,12 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/dimple</value>
+					<value>/opt/xray/ccp4-7.0/bin/dimple</value>
 				</XSParamItem>
+                                <XSParamItem>
+                                        <name>execProcessScriptSetupCCP4</name>
+                                        <value>/opt/xray/ccp4-7.0/bin/ccp4.setup-sh</value>
+                                </XSParamItem>
 				<XSParamItem>
 					<name>timeOut</name>
 					<value>600</value>
@@ -572,7 +402,7 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/pointless</value>
+					<value>/opt/xray/ccp4-7.0/bin/pointless</value>
 				</XSParamItem>
 			</XSParamList>
 		</XSPluginItem>
@@ -586,11 +416,11 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/aimless</value>
+					<value>/opt/xray/ccp4-7.0/bin/aimless</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>symdb_path</name>
-					<value>/opt/pxsoft/ccp4/v6.5/linux-x86_64/ccp4-6.5/lib/data/syminfo.lib</value>
+					<value>/opt/xray/ccp4-7.0/lib/data/symop.lib</value>
 				</XSParamItem>
 			</XSParamList>
 		</XSPluginItem>
@@ -604,7 +434,7 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/truncate</value>
+					<value>/opt/xray/ccp4-7.0/bin/truncate</value>
 				</XSParamItem>
 			</XSParamList>
 		</XSPluginItem>
@@ -618,7 +448,7 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/uniqueify</value>
+					<value>/opt/xray/ccp4-7.0/etc/uniqueify</value>
 				</XSParamItem>
 			</XSParamList>
 		</XSPluginItem>
@@ -631,7 +461,7 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/xds_par</value>
+					<value>/opt/xray/xds/xds_par</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>timeOut</name>
@@ -652,61 +482,11 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/xscale_par</value>
+					<value>/opt/xray/xds/xscale_par</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>timeOut</name>
 					<value>1200</value>
-				</XSParamItem>
-			</XSParamList>
-		</XSPluginItem>
-		<XSPluginItem> 
-			<name>EDPluginBackground3Dv1_0</name>  
-			<XSParamList>
-				<XSParamItem>
-					<name>execProcessScriptShell</name>
-					<value>/bin/bash</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/background3D</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>timeOut</name>
-					<value>600</value>
-				</XSParamItem>
-			</XSParamList>
-		</XSPluginItem>
-		<XSPluginItem> 
-			<name>EDPluginDozorv1_0</name>  
-			<XSParamList>
-				<XSParamItem>
-					<name>execProcessScriptShell</name>
-					<value>/bin/bash</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/dozor</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>timeOut</name>
-					<value>600</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>library_cbf_debian_9</name>
-					<value>/opt/pxsoft/dozor/v2.2.1/debian9-x86_64/bin/xds-zcbf.so</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>library_h5_debian_9</name>
-					<value>/opt/pxsoft/dozor/v2.2.1/debian9-x86_64/bin/dectris-neggia.so</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>library_cbf_ubuntu_20.04</name>
-					<value>/opt/pxsoft/dozor/v2.2.1/ubuntu20.04-x86_64/bin/xds-zcbf.so</value>
-				</XSParamItem>
-				<XSParamItem>
-					<name>library_h5_ubuntu_20.04</name>
-					<value>/opt/pxsoft/dozor/v2.2.1/ubuntu20.04-x86_64/bin/dectris-neggia.so</value>
 				</XSParamItem>
 			</XSParamList>
 		</XSPluginItem>
@@ -719,7 +499,7 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/phenix/v1.17.1-3660/linux-x86_64/phenix-1.17.1-3660/build/bin/phenix.xtriage</value>
+					<value>/software/opt/xray/phenix-1.19.2-4158/build/bin/phenix.xtriage</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>timeOut</name>
@@ -799,7 +579,7 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/opt/pxsoft/bin/xdsit.py</value>
+					<value>/opt/xray/xdsapp/xdsit.py</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>timeOut</name>
@@ -807,7 +587,7 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>maxNoProcessors</name>
-					<value>6</value>
+					<value>40</value>
 				</XSParamItem>
 			</XSParamList>
 		</XSPluginItem>
