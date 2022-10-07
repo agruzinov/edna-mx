@@ -40,7 +40,7 @@
 			<XSParamList>
 				<XSParamItem>
 					<name>mxCuBE_URI</name>
-**					<value>http://id231control.esrf.fr:7171</value>
+					<value>http://haspp11user03.desy.de:7171</value>
 				</XSParamItem>
 			</XSParamList>
 		</XSPluginItem>
@@ -49,7 +49,7 @@
 			<XSParamList>
 				<XSParamItem>
 					<name>mxCuBE_URI</name>
-**					<value>http://id231control.esrf.fr:7171</value>
+					<value>http://haspp11user03.desy.de:7171</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>runKappa</name>
@@ -127,4 +127,4 @@
 			</XSParamList>
 		</XSPluginItem>
 	</XSPluginList> 
-</ XSConfiguration> 
+</XSConfiguration> 
