@@ -251,6 +251,35 @@
 				</XSParamItem>
 			</XSParamList>
 		</XSPluginItem>
+                <XSPluginItem>
+                        <name>EDPluginDozorv1_0</name>
+                        <XSParamList>
+                                <XSParamItem>
+                                        <name>execProcessScriptShell</name>
+                                        <value>/bin/bash</value>
+                                </XSParamItem>
+                                <XSParamItem>
+                                        <name>execProcessScriptExecutable</name>
+                                        <value>/opt/xray/bin/dozor</value>
+                                </XSParamItem>
+                                <XSParamItem>
+                                        <name>execProcessScriptVersionString</name>
+                                        <value>Version 2.0.2 //  20.03.2020</value>
+                                </XSParamItem>
+                                <XSParamItem>
+                                        <name>library_cbf_CentOS_Linux_7</name>
+                                        <value>/opt/xray/xdsapp3.0/plugins/xds-zcbf.so</value>
+                                </XSParamItem>
+                                <XSParamItem>
+                                        <name>library_h5_CentOS_Linux_7</name>
+                                        <value>/opt/xray/xdsapp3.0/plugins/dectris-neggia.so</value>
+                                </XSParamItem>
+                                <XSParamItem>
+                                        <name>timeOut</name>
+                                        <value>30</value>
+                                </XSParamItem>
+                        </XSParamList>
+                </XSPluginItem>
 		<XSPluginItem>
 			<name>EDPluginH5ToCBFv1_0</name>  
 			<XSParamList>
