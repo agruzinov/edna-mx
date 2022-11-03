@@ -115,6 +115,8 @@ class EDPluginDozorv1_0(EDPluginExecProcessScript):
             libraryName += '_debian_'
         elif idName == 'Ubuntu':
             libraryName += '_ubuntu_'
+        elif idName == 'CentOS Linux':
+            libraryName += '_CentOS_Linux_'
         else:
             raise RuntimeError('ExecDozor: unknown os name {0}'.format(idName))
         libraryName += version
