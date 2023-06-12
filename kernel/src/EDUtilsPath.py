@@ -167,6 +167,16 @@ class EDUtilsPath:
             return False
         else:
             return cls._EDNA_SITE.startswith('EMBL')
+
+    @classmethod
+    def isDESY(cls):
+        """
+        Returns true if DESY config
+        """
+        if cls._EDNA_SITE is None:
+            return False
+        else:
+            return cls._EDNA_SITE.startswith('DESY')
      
     @classmethod
     def isESRF(cls):
