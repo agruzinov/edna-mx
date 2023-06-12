@@ -248,6 +248,9 @@ class EDPluginControlInterfaceToMXCuBEv1_4(EDPluginControl):
                     self.bIsEigerDetector = True
                     xsDataInputControlH5ToCBF = XSDataInputControlH5ToCBF()
                     xsDataInputControlH5ToCBF.hdf5File = XSDataFile(xsDataImage.path)
+                    print("======xsDataImage.path:",str(xsDataImage.path.value))
+                    nn+=1
+                    xsDataImage.number = XSDataInteger(nn) 
                     xsDataInputControlH5ToCBF.imageNumber = xsDataImage.number
                     edPluginControlH5ToCBF = self.loadPlugin(self.strPluginControlH5ToCBF, "ControlH5ToCBF_{0:01d}".format(pluginIndex))
                     edPluginControlH5ToCBF.dataInput = xsDataInputControlH5ToCBF
