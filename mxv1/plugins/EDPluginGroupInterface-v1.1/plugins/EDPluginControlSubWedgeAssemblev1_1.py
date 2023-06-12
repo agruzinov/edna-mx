@@ -126,6 +126,13 @@ class EDPluginControlSubWedgeAssemblev1_1(EDPluginControl):
                 bSuccess = False
                 if (xsDataResultReadImageHeader is not None):
                     xsDataSubWedge = xsDataResultReadImageHeader.getSubWedge()
+
+                    strt = xsDataSubWedge.experimentalCondition.goniostat.rotationAxisStart.value + (iIndex-1)*90.0
+                    end = xsDataSubWedge.experimentalCondition.goniostat.rotationAxisEnd.value + (iIndex-1)*90.0
+                     
+                    xsDataSubWedge.experimentalCondition.goniostat.rotationAxisStart.value = strt
+                    xsDataSubWedge.experimentalCondition.goniostat.rotationAxisEnd.value = end
+
                     if (xsDataSubWedge is not None):
                         xsDataSubWedge.setSubWedgeNumber(XSDataInteger(iIndex))
                         listSubWedge.append(xsDataSubWedge)
