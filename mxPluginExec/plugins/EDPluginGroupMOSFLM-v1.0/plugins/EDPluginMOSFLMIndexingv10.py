@@ -69,6 +69,7 @@ class EDPluginMOSFLMIndexingv10(EDPluginMOSFLMv10):
         self.generateMOSFLMCommands()
         # Hack for getting MOSFLM to work with Eiger2 16M images
         xsDataMOSFLMIndexingInput = self.getDataInput()
+        
         noImages = len(xsDataMOSFLMIndexingInput.image)
         if noImages > 1 and xsDataMOSFLMIndexingInput.detector.numberPixelX.value == 4148 and \
            xsDataMOSFLMIndexingInput.detector.numberPixelY.value == 4362:
@@ -85,7 +86,8 @@ class EDPluginMOSFLMIndexingv10(EDPluginMOSFLMv10):
             f2 = h5py.File(dataFilePath, 'w')
             data_000001 = f2.create_dataset('/entry/data/data', (noImages, 4362, 4148), dtype="uint32")
             for imageNumber in range(1, noImages + 1):
-                masterFileN = masterFile.replace("_1_master", "_{0}_master".format(imageNumber))
+                #masterFileN = masterFile.replace("_1_master", "_{0}_master".format(imageNumber))
+                masterFileN = masterFile.replace("_master", "_master".format(imageNumber))
                 fn = h5py.File(os.path.join(directory, masterFileN), 'r')
                 datan = fn['entry']['data']['data_000001'][()]
                 data_000001[imageNumber - 1, :, :] = datan[0, :, :]
@@ -98,7 +100,7 @@ class EDPluginMOSFLMIndexingv10(EDPluginMOSFLMv10):
                     listCommands[index] = "DIRECTORY " + workingDirectory
                     break
             self.setListCommandExecution(listCommands)
-
+         
 
     def finallyProcess(self, _edObject=None):
         EDPluginMOSFLMv10.finallyProcess(self)
