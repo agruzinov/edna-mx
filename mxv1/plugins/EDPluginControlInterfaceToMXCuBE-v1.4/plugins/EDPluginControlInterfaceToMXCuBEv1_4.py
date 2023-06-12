@@ -217,38 +217,20 @@ class EDPluginControlInterfaceToMXCuBEv1_4(EDPluginControl):
         xsDataInputInterface = XSDataInputInterface()
         self.edPluginControlInterface = self.loadPlugin(self.strPluginControlInterface)
         self.xsDataFirstImage = None
-        dictH5ToCBFPlugin = {}
-        pluginIndex = 1
-        for xsDataSetMXCuBE in xsDataInputMXCuBE.dataSet:
-            for xsDataImage in xsDataSetMXCuBE.imageFile:
-                imagePath = xsDataImage.path.value
-                if os.path.exists(imagePath):
-                    message = "Input file ok: {0}".format(imagePath)
-                    self.screen(message)
-                    # self.sendMessageToMXCuBE(message)
-                else:
-                    self.sendMessageToMXCuBE(
-                        "Waiting for file: {0}, timeout {1} s".format(imagePath, self.fMXWaitFileTimeOut))
-                    edPluginMXWaitFile = self.loadPlugin(self.strPluginMXWaitFileName)
-                    xsDataInputMXWaitFile = XSDataInputMXWaitFile()
-                    xsDataInputMXWaitFile.file = XSDataFile(XSDataString(imagePath))
-                    xsDataInputMXWaitFile.setSize(XSDataInteger(self.minImageSize))
-                    xsDataInputMXWaitFile.setTimeOut(XSDataTime(self.fMXWaitFileTimeOut))
-                    self.DEBUG("Wait file timeOut set to %f" % self.fMXWaitFileTimeOut)
-                    edPluginMXWaitFile.setDataInput(xsDataInputMXWaitFile)
-                    edPluginMXWaitFile.executeSynchronous()
-                    if edPluginMXWaitFile.dataOutput.timedOut.value:
-                        errorMessage = "ERROR! File {0} does not exist on disk.".format(imagePath)
-                        self.ERROR(errorMessage)
-                        self.sendMessageToMXCuBE(errorMessage, "error")
-                        self.setFailure()
-                        break
+        nn = 0
+        for xsDataSetMXCuBE in xsDataInputMXCuBE.getDataSet():
+            #print(xsDataSetMXCuBEmage._imageFIle)
+            for xsDataImage in xsDataSetMXCuBE.getImageFile():
                 if xsDataImage.path.value.endswith(".h5"):
                     self.bIsEigerDetector = True
                     xsDataInputControlH5ToCBF = XSDataInputControlH5ToCBF()
                     xsDataInputControlH5ToCBF.hdf5File = XSDataFile(xsDataImage.path)
+                    print("======xsDataImage.path:",str(xsDataImage.path.value))
+                    nn+=1
+                    xsDataImage.number = XSDataInteger(nn) 
                     xsDataInputControlH5ToCBF.imageNumber = xsDataImage.number
-                    edPluginControlH5ToCBF = self.loadPlugin(self.strPluginControlH5ToCBF, "ControlH5ToCBF_{0:01d}".format(pluginIndex))
+                    #print(xsDataImage.number)
+                    edPluginControlH5ToCBF = self.loadPlugin(self.strPluginControlH5ToCBF, "ControlH5ToCBF")
                     edPluginControlH5ToCBF.dataInput = xsDataInputControlH5ToCBF
                     edPluginControlH5ToCBF.execute()
                     dictH5ToCBFPlugin[xsDataImage.path.value] = edPluginControlH5ToCBF
