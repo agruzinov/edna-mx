@@ -170,6 +170,8 @@ class EDPluginControlImageQualityIndicatorsv1_5(EDPluginControl):
                 imagePath = os.path.join(directory, imageName)
                 xsDataImage = XSDataImage(path=XSDataString(imagePath), number=XSDataInteger(index))
                 listXSDataImage.append(xsDataImage)
+                print("=====================xsDataImage")
+                print(xsDataImage)
         else:
             listXSDataImage = self.dataInput.image
         xsDataInputMXWaitFile = XSDataInputMXWaitFile()
