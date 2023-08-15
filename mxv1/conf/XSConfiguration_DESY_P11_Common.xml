@@ -210,7 +210,7 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/asap3/petra3/gpfs/common/p11/processing/edna-mx/bin/raddose</value>
+					<value>/asap3/petra3/gpfs/common/p11/processing/edna/edna-mx/bin/raddose</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptVersionString</name>
@@ -235,7 +235,7 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/asap3/petra3/gpfs/common/p11/processing/edna-mx/best</value>
+					<value>/asap3/petra3/gpfs/common/p11/processing/edna/edna-mx/best/best</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptSetupCCP4</name>
@@ -306,7 +306,7 @@
 				</XSParamItem>
 				<XSParamItem>
 					<name>execProcessScriptExecutable</name>
-					<value>/asap3/petra3/gpfs/common/p11/processing/edna-mx/bin/eiger2cbf_160415</value>
+					<value>/asap3/petra3/gpfs/common/p11/processing/edna/edna-mx/bin/eiger2cbf_160415</value>
 				</XSParamItem>
 				<XSParamItem>
 					<name>timeOut</name>

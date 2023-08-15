@@ -45,6 +45,7 @@ from XSDataMOSFLMv10 import XSDataCell
 from XSDataMOSFLMv10 import XSDataMOSFLMNewmat
 from XSDataMOSFLMv10 import XSDataMOSFLMMissettingsAngles
 
+import re
 
 class EDPluginMOSFLMv10(EDPluginExecProcessScript):
 
@@ -153,7 +154,12 @@ class EDPluginMOSFLMv10(EDPluginExecProcessScript):
 
             xsDataStringTemplate = xsDataMOSFLMInput.getTemplate()
             if (xsDataStringTemplate is not None):
-                self.addListCommandExecution("TEMPLATE " + xsDataStringTemplate.getValue())
+                bad_template = xsDataStringTemplate.getValue()
+	       
+                good_template = re.sub('\d_master','master',bad_template)
+                print('88888888', good_template,bad_template)
+                #self.addListCommandExecution("TEMPLATE " + xsDataStringTemplate.getValue())
+                self.addListCommandExecution("TEMPLATE " + good_template)
 
             xsDataStringSymmetry = xsDataMOSFLMInput.getSymmetry()
             if (xsDataStringSymmetry is not None):
