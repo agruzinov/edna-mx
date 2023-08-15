@@ -87,7 +87,7 @@ class EDPluginMOSFLMIndexingv10(EDPluginMOSFLMv10):
             data_000001 = f2.create_dataset('/entry/data/data', (noImages, 4362, 4148), dtype="uint32")
             for imageNumber in range(1, noImages + 1):
                 #masterFileN = masterFile.replace("_1_master", "_{0}_master".format(imageNumber))
-                masterFileN = masterFile.replace("_master", "_master".format(imageNumber))
+                masterFileN = masterFile.replace("_{0}_master".format(imageNumber), "_master")
                 fn = h5py.File(os.path.join(directory, masterFileN), 'r')
                 datan = fn['entry']['data']['data_000001'][()]
                 data_000001[imageNumber - 1, :, :] = datan[0, :, :]

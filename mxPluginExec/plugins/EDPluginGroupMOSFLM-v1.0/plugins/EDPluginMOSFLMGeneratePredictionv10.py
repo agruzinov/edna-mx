@@ -118,8 +118,8 @@ class EDPluginMOSFLMGeneratePredictionv10(EDPluginMOSFLMv10):
             xsDataMOSFLMImage = xsDataMOSFLMInputGeneratePrediction.getImage()
             iImageNumber = xsDataMOSFLMImage.getNumber().getValue()
             pyStrImageFileName = self.getImageFileNameFromTemplate(pyStrTemplate, iImageNumber)
-            if "master" in xsDataMOSFLMInputGeneratePrediction.template.value:
-                iImageNumber = 1
+            #if "master" in xsDataMOSFLMInputGeneratePrediction.template.value:
+            #    iImageNumber = 1
             if (pyStrImageFileName is not None):
                 self.setPredictionImageFileName(pyStrImageFileName + "_pred.jpg")
 
@@ -150,6 +150,8 @@ class EDPluginMOSFLMGeneratePredictionv10(EDPluginMOSFLMv10):
         xsDataImage = XSDataImage()
         xsDataImage.setNumber(XSDataInteger(iImageNumber))
         xsDataImage.setPath(XSDataString(os.path.join(self.getWorkingDirectory(), self.getPredictionImageFileName())))
+        print("==============================")
+        print(xsDataImage)
         xsDataMOSFLMOutputGeneratePrediction.setPredictionImage(xsDataImage)
          # Path to log file
         xsDataMOSFLMOutputGeneratePrediction.setPathToLogFile(XSDataFile(XSDataString(os.path.join(self.getWorkingDirectory(), self.getScriptLogFileName()))))
@@ -180,7 +182,10 @@ class EDPluginMOSFLMGeneratePredictionv10(EDPluginMOSFLMv10):
                     if (bHashFound and (not bFinished)):
                         iNoHashes += 1
                 strImageFileName = _strTemplate[ 0:iFirstHash ] + str(_iImageNumber).rjust(iNoHashes, "0")
+
             except:
                 self.warning("EDPluginMOSFLMGeneratePredictionv10: Couldn't transform template %s to file name" % _strTemplate)
                 strImageFileName = None
-        return strImageFileName
+            print("=============================================strImageFileName:")
+            print(strImageFIleName)
+            return strImageFileName

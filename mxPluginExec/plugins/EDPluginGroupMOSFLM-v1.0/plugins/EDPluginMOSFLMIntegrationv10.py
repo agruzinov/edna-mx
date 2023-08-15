@@ -113,9 +113,11 @@ class EDPluginMOSFLMIntegrationv10(EDPluginMOSFLMv10):
 
             self.addListCommandExecution("HKLOUT process_%d_%d.mtz" %
                                                        (iImageStart, iImageEnd))
+            """
             if "master" in xsDataMOSFLMInputIntegration.template.value:
                 iImageStart = 1
                 iImageEnd = 1
+            """
             self.addListCommandExecution("PROCESS %d TO %d START %f ANGLE %f" %
                                                        (iImageStart, iImageEnd, fRotationAxisStart, fOscillationWidth))
 

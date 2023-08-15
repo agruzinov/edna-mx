@@ -125,7 +125,7 @@ class EDPluginH5ToCBFv1_1(EDPluginExecProcessScript):
                 imageNumberInHdf5File = imageNumber
             else:
                 CBFFileName = prefix + "_%04d" % imageNumber + ".cbf"
-                imageNumberInHdf5File = imageNumber - hdf5ImageNumber + 1
+                imageNumberInHdf5File = imageNumber #- hdf5ImageNumber + 1
 
             tmpCBFFileName = "tmp_" + CBFFileName
 

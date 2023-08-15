@@ -237,7 +237,7 @@ class EDPluginBestv1_2(EDPluginExecProcessScript):
         fExposureTime = self.dataInput.beamExposureTime.value
         fMaxExposureTime = self.dataInput.beamMaxExposureTime.value
 
-        self.strCommandBest = "-f " + strDetectorName + " " + "-t " + str(fExposureTime) + " "
+        self.strCommandBest = "-f " + strDetectorName + " " + "-t " + str(fExposureTime) + " " + "-low never "
 
         # Add output of gle files only if version is 4.1.0 (or higher)
         if self.bVersionHigherThan4_0:
