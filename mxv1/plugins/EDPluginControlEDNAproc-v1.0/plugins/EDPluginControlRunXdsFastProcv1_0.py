@@ -129,6 +129,7 @@ class EDPluginControlRunXdsFastProcv1_0(EDPluginControl):
         params.unit_cell = self.dataInput.unit_cell
         params.start_image = self.dataInput.start_image
         params.end_image = self.dataInput.end_image
+        params.exclude_range = self.dataInput.exclude_range
         # Fix for 'SPOT_RANGE 0 100' problem
         for srange in self.spot_range:
             if srange[0] > 0:
@@ -162,6 +163,7 @@ class EDPluginControlRunXdsFastProcv1_0(EDPluginControl):
             # params.job = XSDataString('DEFPIX INTEGRATE CORRECT')
             params.spacegroup = self.dataInput.spacegroup
             params.unit_cell = self.dataInput.unit_cell
+            params.exclude_range = self.dataInput.exclude_range
 
             # Extended spot range
             if self.end_image_no - self.start_image_no < 300:
@@ -211,6 +213,7 @@ class EDPluginControlRunXdsFastProcv1_0(EDPluginControl):
             # params.job = XSDataString('DEFPIX INTEGRATE CORRECT')
             params.spacegroup = self.dataInput.spacegroup
             params.unit_cell = self.dataInput.unit_cell
+            params.exclude_range = self.dataInput.exclude_range
 
             # Limited spot range: 1 to 20 or max no data points
 

@@ -13,6 +13,7 @@ import XSDataCommon.XSDataResult
 import XSDataCommon.XSDataString
 import XSDataCommon.XSDataVectorDouble
 import XSDataCommon.XSDataWavelength
+import XSDataCommon.XSDataRange
 
 complex type XSDataCell {
 	angle_alpha : XSDataAngle
@@ -21,11 +22,6 @@ complex type XSDataCell {
 	length_a : XSDataLength
 	length_b : XSDataLength
 	length_c : XSDataLength
-}
-
-complex type XSDataRange {
-	begin : integer
-	end : integer
 }
 
 complex type XSDataMinimalXdsIn extends XSDataInput {
@@ -40,6 +36,7 @@ complex type XSDataMinimalXdsIn extends XSDataInput {
 	unit_cell : XSDataString optional
 	start_image : XSDataInteger optional
 	end_image : XSDataInteger optional
+	exclude_range : XSDataRange [] optional
 }
 
 complex type XSDataMinimalXdsOut extends XSDataResult {
@@ -181,6 +178,7 @@ complex type XSDataXdsGenerateInput extends XSDataInput {
 	unit_cell : XSDataString optional
 	doAnom : XSDataBoolean optional
 	doNoanom : XSDataBoolean optional	
+	exclude_range : XSDataRange [] optional
 }
 
 // we are only interested in that one file

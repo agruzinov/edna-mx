@@ -82,6 +82,7 @@ class EDUtilsICAT:
         proposal,
         timeStart,
         timeEnd,
+        reprocess=False
     ):
         if directory.endswith("/"):
             directory = directory[:-1]
@@ -155,6 +156,18 @@ class EDUtilsICAT:
                 f"MXAutoprocIntegrationScaling_{icat_stat_name}_r_merge"
             ] = autoProcScalingStatistics.rMerge
             metadata[
+                f"MXAutoprocIntegrationScaling_{icat_stat_name}_r_meas_within_IPlus_IMinus"
+            ] = autoProcScalingStatistics.rMeasWithinIPlusIMinus
+            metadata[
+                f"MXAutoprocIntegrationScaling_{icat_stat_name}_r_meas_all_IPlus_IMinus"
+            ] = autoProcScalingStatistics.rMeasAllIPlusIMinus
+            metadata[
+                f"MXAutoprocIntegrationScaling_{icat_stat_name}_r_pim_within_IPlus_IMinus"
+            ] = autoProcScalingStatistics.rPimWithinIPlusIMinus
+            metadata[
+                f"MXAutoprocIntegrationScaling_{icat_stat_name}_r_pim_all_IPlus_IMinus"
+            ] = autoProcScalingStatistics.rPimAllIPlusIMinus
+            metadata[
                 f"MXAutoprocIntegrationScaling_{icat_stat_name}_mean_I_over_sigI"
             ] = autoProcScalingStatistics.meanIOverSigI
             metadata[
@@ -165,6 +178,8 @@ class EDUtilsICAT:
             ] = autoProcScalingStatistics.ccAno
 
         # ICAT settings
+        if reprocess:
+            metadata["Process_triggering"] = "manual"
         icat_beamline = EDUtilsICAT.getIcatBeamline(beamline)
         if icat_beamline is not None:
             if icat_beamline == "ID30A-2":

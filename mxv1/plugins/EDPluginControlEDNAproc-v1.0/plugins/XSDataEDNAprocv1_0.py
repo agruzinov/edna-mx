@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #
-# Generated Fri Jul 28 03:59::50 2023 by EDGenerateDS.
+# Generated Wed Jan 17 02:58::35 2024 by EDGenerateDS.
 #
 
 import os, sys
@@ -19,9 +19,11 @@ dictLocation = { \
  "XSDataCommon": "kernel/datamodel", \
  "XSDataCommon": "kernel/datamodel", \
  "XSDataCommon": "kernel/datamodel", \
+ "XSDataCommon": "kernel/datamodel", \
 }
 
 try:
+    from XSDataCommon import XSDataRange
     from XSDataCommon import XSDataBoolean
     from XSDataCommon import XSDataDouble
     from XSDataCommon import XSDataFile
@@ -39,6 +41,7 @@ except ImportError as error:
                     sys.path.append(strRoot)
     else:
         raise error
+from XSDataCommon import XSDataRange
 from XSDataCommon import XSDataBoolean
 from XSDataCommon import XSDataDouble
 from XSDataCommon import XSDataFile
@@ -734,7 +737,7 @@ class XSDataEDNAprocImportOut(XSDataResult):
 
 
 class XSDataEDNAprocInput(XSDataInput):
-    def __init__(self, configuration=None, doAnomAndNonanom=None, doAnom=None, reprocess=None, end_image=None, start_image=None, output_file=None, unit_cell=None, spacegroup=None, nres=None, low_resolution_limit=None, detector_max_res=None, icat_processed_data_dir=None, data_collection_id=None, cc_half_cutoff=None, r_value_cutoff=None, isig_cutoff=None, completeness_cutoff=None, res_override=None, input_file=None):
+    def __init__(self, configuration=None, doAnomAndNonanom=None, doAnom=None, reprocess=None, exclude_range=None, end_image=None, start_image=None, output_file=None, unit_cell=None, spacegroup=None, nres=None, low_resolution_limit=None, detector_max_res=None, icat_processed_data_dir=None, data_collection_id=None, cc_half_cutoff=None, r_value_cutoff=None, isig_cutoff=None, completeness_cutoff=None, res_override=None, input_file=None):
         XSDataInput.__init__(self, configuration)
         if input_file is None:
             self._input_file = None
@@ -847,6 +850,13 @@ class XSDataEDNAprocInput(XSDataInput):
             self._end_image = end_image
         else:
             strMessage = "ERROR! XSDataEDNAprocInput constructor argument 'end_image' is not XSDataInteger but %s" % self._end_image.__class__.__name__
+            raise BaseException(strMessage)
+        if exclude_range is None:
+            self._exclude_range = []
+        elif exclude_range.__class__.__name__ == "list":
+            self._exclude_range = exclude_range
+        else:
+            strMessage = "ERROR! XSDataEDNAprocInput constructor argument 'exclude_range' is not list but %s" % self._exclude_range.__class__.__name__
             raise BaseException(strMessage)
         if reprocess is None:
             self._reprocess = None
@@ -1061,6 +1071,39 @@ class XSDataEDNAprocInput(XSDataInput):
             raise BaseException(strMessage)
     def delEnd_image(self): self._end_image = None
     end_image = property(getEnd_image, setEnd_image, delEnd_image, "Property for end_image")
+    # Methods and properties for the 'exclude_range' attribute
+    def getExclude_range(self): return self._exclude_range
+    def setExclude_range(self, exclude_range):
+        if exclude_range is None:
+            self._exclude_range = []
+        elif exclude_range.__class__.__name__ == "list":
+            self._exclude_range = exclude_range
+        else:
+            strMessage = "ERROR! XSDataEDNAprocInput.setExclude_range argument is not list but %s" % exclude_range.__class__.__name__
+            raise BaseException(strMessage)
+    def delExclude_range(self): self._exclude_range = None
+    exclude_range = property(getExclude_range, setExclude_range, delExclude_range, "Property for exclude_range")
+    def addExclude_range(self, value):
+        if value is None:
+            strMessage = "ERROR! XSDataEDNAprocInput.addExclude_range argument is None"
+            raise BaseException(strMessage)            
+        elif value.__class__.__name__ == "XSDataRange":
+            self._exclude_range.append(value)
+        else:
+            strMessage = "ERROR! XSDataEDNAprocInput.addExclude_range argument is not XSDataRange but %s" % value.__class__.__name__
+            raise BaseException(strMessage)
+    def insertExclude_range(self, index, value):
+        if index is None:
+            strMessage = "ERROR! XSDataEDNAprocInput.insertExclude_range argument 'index' is None"
+            raise BaseException(strMessage)            
+        if value is None:
+            strMessage = "ERROR! XSDataEDNAprocInput.insertExclude_range argument 'value' is None"
+            raise BaseException(strMessage)            
+        elif value.__class__.__name__ == "XSDataRange":
+            self._exclude_range[index] = value
+        else:
+            strMessage = "ERROR! XSDataEDNAprocInput.addExclude_range argument is not XSDataRange but %s" % value.__class__.__name__
+            raise BaseException(strMessage)
     # Methods and properties for the 'reprocess' attribute
     def getReprocess(self): return self._reprocess
     def setReprocess(self, reprocess):
@@ -1139,6 +1182,8 @@ class XSDataEDNAprocInput(XSDataInput):
             self.start_image.export(outfile, level, name_='start_image')
         if self._end_image is not None:
             self.end_image.export(outfile, level, name_='end_image')
+        for exclude_range_ in self.getExclude_range():
+            exclude_range_.export(outfile, level, name_='exclude_range')
         if self._reprocess is not None:
             self.reprocess.export(outfile, level, name_='reprocess')
         if self._doAnom is not None:
@@ -1230,6 +1275,11 @@ class XSDataEDNAprocInput(XSDataInput):
             obj_ = XSDataInteger()
             obj_.build(child_)
             self.setEnd_image(obj_)
+        elif child_.nodeType == Node.ELEMENT_NODE and \
+            nodeName_ == 'exclude_range':
+            obj_ = XSDataRange()
+            obj_.build(child_)
+            self.exclude_range.append(obj_)
         elif child_.nodeType == Node.ELEMENT_NODE and \
             nodeName_ == 'reprocess':
             obj_ = XSDataBoolean()

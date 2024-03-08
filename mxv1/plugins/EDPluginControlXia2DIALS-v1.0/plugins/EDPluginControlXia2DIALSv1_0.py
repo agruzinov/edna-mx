@@ -323,6 +323,7 @@ class EDPluginControlXia2DIALSv1_0(EDPluginControl):
             xsDataInputXia2DIALSAnom.anomalous = XSDataBoolean(True)
             xsDataInputXia2DIALSAnom.spaceGroup = self.dataInput.spaceGroup
             xsDataInputXia2DIALSAnom.unitCell = self.dataInput.unitCell
+            xsDataInputXia2DIALSAnom.exclude_range = self.dataInput.exclude_range
             if imageNoStart is not None:
                 xsDataInputXia2DIALSAnom.startFrame = XSDataInteger(imageNoStart)
             if imageNoEnd is not None:
@@ -332,6 +333,7 @@ class EDPluginControlXia2DIALSv1_0(EDPluginControl):
             xsDataInputXia2DIALSNoanom.anomalous = XSDataBoolean(False)
             xsDataInputXia2DIALSNoanom.spaceGroup = self.dataInput.spaceGroup
             xsDataInputXia2DIALSNoanom.unitCell = self.dataInput.unitCell
+            xsDataInputXia2DIALSNoanom.exclude_range = self.dataInput.exclude_range
             if imageNoStart is not None:
                 xsDataInputXia2DIALSNoanom.startFrame = XSDataInteger(imageNoStart)
             if imageNoEnd is not None:
@@ -426,6 +428,7 @@ class EDPluginControlXia2DIALSv1_0(EDPluginControl):
                     proposal=proposal,
                     timeStart=None,
                     timeEnd=None,
+                    reprocess=self.reprocess
                 )
         if self.doNoanom:
             (
@@ -454,6 +457,7 @@ class EDPluginControlXia2DIALSv1_0(EDPluginControl):
                     proposal=proposal,
                     timeStart=None,
                     timeEnd=None,
+                    reprocess=self.reprocess
                 )
 
     def finallyProcess(self, _edObject=None):

@@ -9,6 +9,7 @@ import XSDataCommon.XSDataInput
 import XSDataCommon.XSDataResult
 import XSDataCommon.XSDataBoolean
 import XSDataCommon.XSDataFile
+import XSDataCommon.XSDataRange
 
 complex type XSDataEDNAprocInput extends XSDataInput {
 	input_file : XSDataFile
@@ -31,6 +32,7 @@ complex type XSDataEDNAprocInput extends XSDataInput {
 
 	start_image : XSDataInteger optional
 	end_image : XSDataInteger optional
+	exclude_range : XSDataRange [] optional
 	
 	reprocess : XSDataBoolean optional
 

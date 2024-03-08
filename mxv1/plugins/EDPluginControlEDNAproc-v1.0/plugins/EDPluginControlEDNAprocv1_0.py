@@ -25,6 +25,7 @@ __authors__ = ["Thomas Boeglin", "Olof Svensson"]
 __license__ = "GPLv3+"
 __copyright__ = "ESRF"
 
+import json
 import smtplib
 
 WS_URL = "https://ispyb.esrf.fr/ispyb-ws/ispybWS/ToolsForCollectionWebService?wsdl"
@@ -115,8 +116,8 @@ WAIT_FOR_FRAME_TIMEOUT = 240  # max uses 50*5
 # We used to go through the results directory and add all files to the
 # ispyb upload. Now some files should not be uploaded, so we'll
 # discriminate by extension for now
-ISPYB_UPLOAD_EXTENSIONS = [".lp", ".mtz", ".log", ".inp", ".gz"]
-
+ISPYB_UPLOAD_EXTENSIONS = [".lp", ".mtz", ".log", ".inp", ".gz", ".xds"]
+ISPYB_EXCLUDE_EXTENSIONS = ["multirecord.mtz", "multirecord.mtz.gz"]
 
 class EDPluginControlEDNAprocv1_0(EDPluginControl):
     """
@@ -154,6 +155,7 @@ class EDPluginControlEDNAprocv1_0(EDPluginControl):
         self.raw_data_dir = None
         self.icat_processed_data_dir = None
         self.processingPrograms = None
+        self.reprocess = False
 
     def configure(self):
         EDPluginControl.configure(self)
@@ -191,6 +193,9 @@ class EDPluginControlEDNAprocv1_0(EDPluginControl):
         # ICAT upload
         if self.dataInput.icat_processed_data_dir is not None:
             self.icat_processed_data_dir = self.dataInput.icat_processed_data_dir.value
+
+        if self.dataInput.reprocess is not None:
+            self.reprocess = self.dataInput.reprocess.value
 
         if data_in.input_file is None:
             # Input data file not provided, try to create one
@@ -286,6 +291,7 @@ class EDPluginControlEDNAprocv1_0(EDPluginControl):
         xds_in.input_file = data_in.input_file.path
         xds_in.start_image = data_in.start_image
         xds_in.end_image = data_in.end_image
+        xds_in.exclude_range = data_in.exclude_range
         if sgnumber is not None:
             xds_in.spacegroup = XSDataInteger(sgnumber)
 
@@ -652,8 +658,8 @@ class EDPluginControlEDNAprocv1_0(EDPluginControl):
             tmppath,
         )
 
-        # Copy the CORRECT.LP and INTEGRATE.LP files as well
-        for fileName in ["CORRECT.LP", "INTEGRATE.LP"]:
+        # Copy the CORRECT.LP, INTEGRATE.LP, XPARM.XDS and GXPARM.XDS files as well
+        for fileName in ["CORRECT.LP", "INTEGRATE.LP", "XPARM.XDS", "GXPARM.XDS"]:
             filePath = os.path.join(
                 self.results_dir, "ep_" + self.image_prefix + "_" + fileName
             )
@@ -742,6 +748,7 @@ class EDPluginControlEDNAprocv1_0(EDPluginControl):
         generate_input.previous_run_dir = XSDataString(xds_run_directory)
         generate_input.doAnom = XSDataBoolean(self.doAnom)
         generate_input.doNoanom = XSDataBoolean(self.doNoanom)
+        generate_input.exclude_range = self.dataInput.exclude_range
         self.generate.dataInput = generate_input
 
         self.log_to_ispyb(
@@ -1042,6 +1049,7 @@ class EDPluginControlEDNAprocv1_0(EDPluginControl):
         )
         generate_xscale_input.doAnom = XSDataBoolean(self.doAnom)
         generate_xscale_input.doNoanom = XSDataBoolean(self.doNoanom)
+        generate_xscale_input.exclude_range = self.dataInput.exclude_range
         pointless_cell = ""
         list_pointless_cell = self.file_conversion.dataOutput.pointless_cell
         pointless_cell += "{0}".format(list_pointless_cell[0].value)
@@ -1469,10 +1477,16 @@ class EDPluginControlEDNAprocv1_0(EDPluginControl):
                         in ISPYB_UPLOAD_EXTENSIONS
                     ):
                         continue
-                    new_path = os.path.join(pyarch_path, f)
-                    self.screen("Uploading {0} to ISPyB".format(f))
-                    file_list.append(new_path)
-                    shutil.copyfile(current, new_path)
+                    do_upload = True
+                    for exclude_extension in ISPYB_EXCLUDE_EXTENSIONS:
+                        if current.endswith(exclude_extension):
+                            do_upload = False
+                            break
+                    if do_upload:
+                        new_path = os.path.join(pyarch_path, f)
+                        self.screen("Uploading {0} to ISPyB".format(f))
+                        file_list.append(new_path)
+                        shutil.copyfile(current, new_path)
                 # now add those to the ispyb upload
                 for path in file_list:
                     dirname, filename = os.path.split(path)
@@ -1547,6 +1561,7 @@ class EDPluginControlEDNAprocv1_0(EDPluginControl):
                             proposal=self.strProposal,
                             timeStart=None,
                             timeEnd=None,
+                            reprocess=self.reprocess
                         )
 
             if self.doNoanom:
@@ -1600,6 +1615,7 @@ class EDPluginControlEDNAprocv1_0(EDPluginControl):
                             proposal=self.strProposal,
                             timeStart=None,
                             timeEnd=None,
+                            reprocess=self.reprocess
                         )
 
             # Finally run dimple if executed at the ESRF

@@ -91,6 +91,7 @@ class EDPluginControlAutoPROCv1_0(EDPluginControl):
         self.hasUploadedNoanomStaranisoResultsToISPyB = False
         self.listPyarchFile = []
         self.reprocess = False
+        self.exclude_range = None
 
     def configure(self):
         EDPluginControl.configure(self)
@@ -213,6 +214,11 @@ class EDPluginControlAutoPROCv1_0(EDPluginControl):
                 fileTemplate = template.replace("####", "%04d")
             pathToStartImage = os.path.join(directory, fileTemplate % imageNoStart)
             pathToEndImage = os.path.join(directory, fileTemplate % imageNoEnd)
+
+        if self.dataInput.exclude_range is not None:
+            self.exclude_range = []
+            for xsdata_range in self.dataInput.exclude_range:
+                self.exclude_range.append([xsdata_range.begin, xsdata_range.end])
 
         # Try to get proposal from path
         beamline, proposal = EDUtilsPath.getBeamlineProposal(directory)
@@ -409,16 +415,31 @@ class EDPluginControlAutoPROCv1_0(EDPluginControl):
             xsDataInputAutoPROCNoanom.highResolutionLimit = (
                 self.dataInput.highResolutionLimit
             )
-        xsDataAutoPROCIdentifier = XSDataAutoPROCIdentifier()
-        xsDataAutoPROCIdentifier.idN = XSDataString(identifier)
-        xsDataAutoPROCIdentifier.dirN = XSDataFile(XSDataString(directory))
-        xsDataAutoPROCIdentifier.templateN = XSDataString(template)
-        xsDataAutoPROCIdentifier.fromN = XSDataInteger(imageNoStart)
-        xsDataAutoPROCIdentifier.toN = XSDataInteger(imageNoEnd)
-        if self.doAnom:
-            xsDataInputAutoPROCAnom.addIdentifier(xsDataAutoPROCIdentifier)
-        if self.doNoanom:
-            xsDataInputAutoPROCNoanom.addIdentifier(xsDataAutoPROCIdentifier.copy())
+        if self.exclude_range is None or len(self.exclude_range) == 0:
+            list_data_range = [[imageNoStart, imageNoEnd]]
+        else:
+            list_data_range = []
+            first_iteration = True
+            for exclude_begin, exclude_end in self.exclude_range:
+                if first_iteration:
+                    list_data_range.append([imageNoStart, exclude_begin-1])
+                    first_iteration = False
+                else:
+                    list_data_range.append([next_include_begin, exclude_begin-1])
+                next_include_begin = exclude_end + 1
+            list_data_range.append([next_include_begin, imageNoEnd])
+        for index, range in enumerate(list_data_range):
+            begin, end = range
+            xsDataAutoPROCIdentifier = XSDataAutoPROCIdentifier()
+            xsDataAutoPROCIdentifier.idN = XSDataString(identifier + "_" + str(index+1))
+            xsDataAutoPROCIdentifier.dirN = XSDataFile(XSDataString(directory))
+            xsDataAutoPROCIdentifier.templateN = XSDataString(template)
+            xsDataAutoPROCIdentifier.fromN = XSDataInteger(begin)
+            xsDataAutoPROCIdentifier.toN = XSDataInteger(end)
+            if self.doAnom:
+                xsDataInputAutoPROCAnom.addIdentifier(xsDataAutoPROCIdentifier)
+            if self.doNoanom:
+                xsDataInputAutoPROCNoanom.addIdentifier(xsDataAutoPROCIdentifier.copy())
         if isH5:
             masterFilePath = os.path.join(
                 directory, self.eiger_template_to_master(template)
@@ -476,6 +497,7 @@ class EDPluginControlAutoPROCv1_0(EDPluginControl):
                     proposal=proposal,
                     timeStart=timeStart,
                     timeEnd=timeEnd,
+                    reprocess=self.reprocess
                 )
             xsDataInputStoreAutoProc_anom_staraniso = self.uploadToISPyB(
                 edPluginExecAutoPROC=self.edPluginExecAutoPROCAnom,
@@ -502,6 +524,7 @@ class EDPluginControlAutoPROCv1_0(EDPluginControl):
                     proposal=proposal,
                     timeStart=timeStart,
                     timeEnd=timeEnd,
+                    reprocess=self.reprocess
                 )
 
         if self.doNoanom:
@@ -528,6 +551,7 @@ class EDPluginControlAutoPROCv1_0(EDPluginControl):
                     proposal=proposal,
                     timeStart=timeStart,
                     timeEnd=timeEnd,
+                    reprocess=self.reprocess
                 )
             xsDataInputStoreAutoProc_noanom_staraniso = self.uploadToISPyB(
                 edPluginExecAutoPROC=self.edPluginExecAutoPROCNoanom,
@@ -551,6 +575,7 @@ class EDPluginControlAutoPROCv1_0(EDPluginControl):
                     proposal=proposal,
                     timeStart=timeStart,
                     timeEnd=timeEnd,
+                    reprocess=self.reprocess
                 )
 
     def finallyProcess(self, _edObject=None):
@@ -885,6 +910,45 @@ class EDPluginControlAutoPROCv1_0(EDPluginControl):
                     )
                 autoProcProgramAttachment = AutoProcProgramAttachment()
                 autoProcProgramAttachment.fileName = pyarchXdsAsciiHkl
+                autoProcProgramAttachment.filePath = self.pyarchDirectory
+                autoProcProgramAttachment.fileType = "Result"
+                autoProcProgramContainer.addAutoProcProgramAttachment(
+                    autoProcProgramAttachment
+                )
+            # Add XPARM.XDS and GXPARM.XDS if present
+            xparm_xds_path = os.path.join(processDirectory, "XPARM.XDS")
+            if os.path.exists(xparm_xds_path):
+                pyarch_xparm_xds_name = self.pyarchPrefix + "_{0}_XPARM.XDS".format(anomString)
+                if self.resultsDirectory:
+                    shutil.copy(
+                        xparm_xds_path,
+                        os.path.join(self.resultsDirectory, pyarch_xparm_xds_name),
+                    )
+                shutil.copyfile(
+                    xparm_xds_path,
+                    os.path.join(self.pyarchDirectory, pyarch_xparm_xds_name)
+                )
+                autoProcProgramAttachment = AutoProcProgramAttachment()
+                autoProcProgramAttachment.fileName = pyarch_xparm_xds_name
+                autoProcProgramAttachment.filePath = self.pyarchDirectory
+                autoProcProgramAttachment.fileType = "Result"
+                autoProcProgramContainer.addAutoProcProgramAttachment(
+                    autoProcProgramAttachment
+                )
+            gxparm_xds_path = os.path.join(processDirectory, "GXPARM.XDS")
+            if os.path.exists(gxparm_xds_path):
+                pyarch_gxparm_xds_name = self.pyarchPrefix + "_{0}_GXPARM.XDS".format(anomString)
+                if self.resultsDirectory:
+                    shutil.copy(
+                        gxparm_xds_path,
+                        os.path.join(self.resultsDirectory, pyarch_gxparm_xds_name),
+                    )
+                shutil.copyfile(
+                    gxparm_xds_path,
+                    os.path.join(self.pyarchDirectory, pyarch_gxparm_xds_name)
+                )
+                autoProcProgramAttachment = AutoProcProgramAttachment()
+                autoProcProgramAttachment.fileName = pyarch_gxparm_xds_name
                 autoProcProgramAttachment.filePath = self.pyarchDirectory
                 autoProcProgramAttachment.fileType = "Result"
                 autoProcProgramContainer.addAutoProcProgramAttachment(
